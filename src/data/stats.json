@@ -1,0 +1,45 @@
+{
+  "totalMessages": 94427,
+  "fromMe": 50612,
+  "fromThem": 43815,
+  "firstDate": "2022-09-19",
+  "lastDate": "2026-02-08",
+  "daysSinceFirst": 1238,
+  "daysTexted": 1089,
+  "mostActiveHour": {
+    "hour": "12 PM",
+    "count": 6647
+  },
+  "mostActiveDay": {
+    "day": "Tuesday",
+    "count": 17158
+  },
+  "topEmojis": [
+    {
+      "emoji": "😂",
+      "count": 12704
+    },
+    {
+      "emoji": "😭",
+      "count": 3050
+    },
+    {
+      "emoji": "🤣",
+      "count": 1479
+    },
+    {
+      "emoji": "😁",
+      "count": 1214
+    },
+    {
+      "emoji": "💀",
+      "count": 703
+    }
+  ],
+  "loveYouCount": 791,
+  "longestStreak": 129,
+  "avgPerDay": 76.3,
+  "totalWords": 607806,
+  "lateNightMessages": 7401,
+  "photosShared": 2454
+}
