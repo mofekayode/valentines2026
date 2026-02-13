@@ -26,6 +26,7 @@ export default function Home() {
   const [selectedMoment, setSelectedMoment] = useState<Moment | null>(null);
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const [showFinalMessage, setShowFinalMessage] = useState(false);
+  const [showHotelReveal, setShowHotelReveal] = useState(false);
   const [currentSection, setCurrentSection] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const [photos, setPhotos] = useState<Photo[]>([]);
@@ -371,9 +372,9 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="fixed inset-0 bg-black flex flex-col items-center justify-center px-8 z-50"
+            className="fixed inset-0 bg-black flex flex-col items-center justify-center px-8 z-50 overflow-y-auto"
           >
-            <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
               {[...Array(30)].map((_, i) => (
                 <motion.div
                   key={i}
@@ -393,43 +394,108 @@ export default function Home() {
               ))}
             </div>
 
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ type: "spring", delay: 0.3 }}
-              className="text-8xl mb-8 relative z-10"
-            >
-              💖
-            </motion.div>
+            <div className="flex flex-col items-center justify-center min-h-screen py-12 relative z-10">
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: "spring", delay: 0.3 }}
+                className="text-8xl mb-8"
+              >
+                💖
+              </motion.div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="text-3xl md:text-5xl font-light text-center mb-6 bg-gradient-to-r from-amber-200 via-rose-300 to-amber-200 bg-clip-text text-transparent relative z-10"
-            >
-              Forever Starts Now
-            </motion.h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="text-3xl md:text-5xl font-light text-center mb-6 bg-gradient-to-r from-amber-200 via-rose-300 to-amber-200 bg-clip-text text-transparent"
+              >
+                Forever Starts Now
+              </motion.h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7 }}
-              className="text-xl text-white/60 text-center max-w-md relative z-10"
-            >
-              Thank you for being my everything.
-              <br />
-              Here&apos;s to us and all our tomorrows.
-            </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+                className="text-xl text-white/60 text-center max-w-md"
+              >
+                Thank you for being my everything.
+                <br />
+                Here&apos;s to us and all our tomorrows.
+              </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.5 }}
-              className="mt-12 text-white/30 text-sm relative z-10"
-            >
-              Happy Valentine&apos;s Day 2026 💕
-            </motion.div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.5 }}
+                className="mt-12 text-white/30 text-sm"
+              >
+                Happy Valentine&apos;s Day 2026 💕
+              </motion.div>
+
+              {/* Hotel Surprise Reveal */}
+              {!showHotelReveal ? (
+                <motion.button
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 3 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setShowHotelReveal(true)}
+                  className="mt-16 px-10 py-4 rounded-full bg-gradient-to-r from-amber-200 via-rose-300 to-amber-200 text-black font-medium text-lg shadow-lg shadow-rose-500/25 hover:shadow-rose-500/40 transition-shadow"
+                >
+                  But wait... I have one more surprise 🎁
+                </motion.button>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="mt-16 flex flex-col items-center max-w-lg w-full"
+                >
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="text-2xl md:text-3xl font-light text-center mb-2 bg-gradient-to-r from-amber-200 via-rose-300 to-amber-200 bg-clip-text text-transparent"
+                  >
+                    Pack your bags, baby
+                  </motion.p>
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.6 }}
+                    className="text-white/50 text-center mb-8 text-lg"
+                  >
+                    I booked you 3 nights at...
+                  </motion.p>
+
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 1, type: "spring", damping: 20 }}
+                    className="relative w-full rounded-2xl overflow-hidden ring-2 ring-amber-200/30 shadow-2xl shadow-rose-500/20"
+                  >
+                    <Image
+                      src="/hotel-surprise.png"
+                      alt="Hotel surprise"
+                      width={800}
+                      height={600}
+                      className="w-full h-auto"
+                    />
+                  </motion.div>
+
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.5 }}
+                    className="mt-6 text-white/40 text-sm text-center"
+                  >
+                    The Ritz-Carlton, Washington D.C. — Feb 13-16, 2026 💕
+                  </motion.p>
+                </motion.div>
+              )}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
